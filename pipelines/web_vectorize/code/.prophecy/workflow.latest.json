@@ -14,7 +14,7 @@
     "id" : "1",
     "uri" : "pipelines/web_vectorize",
     "language" : "python",
-    "fabricId" : "9769",
+    "fabricId" : "9631",
     "frontEndLanguage" : "sql",
     "mode" : "batch",
     "udfs" : {
@@ -820,7 +820,9 @@
         "phase" : 2,
         "cache" : false,
         "detailedStats" : false,
-        "isImported" : false
+        "isImported" : false,
+        "comment" : "Retrieves web content data for analysis.",
+        "autoUpdateComment" : true
       },
       "ports" : {
         "inputs" : [ ],
