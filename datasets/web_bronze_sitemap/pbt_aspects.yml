@@ -6,20 +6,23 @@ schema:
     type: string
     nullable: true
     metadata:
-      description: ''
+      description: Frequency at which the content of the URL is expected to change;
+        Indicates how often the page is updated.
       mappings: []
       tags: []
   - name: loc
     type: string
     nullable: true
     metadata:
-      description: ''
+      description: The URL location of the resource; Represents the web address of
+        the sitemap entry.
       mappings: []
       tags: []
   - name: priority
     type: double
     nullable: true
     metadata:
-      description: ''
+      description: Indicates the importance of the URL in the sitemap; A higher value
+        signifies a higher priority for search engines.
       mappings: []
       tags: []

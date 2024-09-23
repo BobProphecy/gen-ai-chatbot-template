@@ -6,20 +6,22 @@ schema:
     type: long
     nullable: true
     metadata:
-      description: ''
+      description: Unique identifier for each record in the dataset.
       mappings: []
       tags: []
   - name: url
     type: string
     nullable: true
     metadata:
-      description: ''
+      description: The web address of the resource; It points to the location of the
+        sitemap in XML format.
       mappings: []
       tags: []
   - name: content
     type: binary
     nullable: true
     metadata:
-      description: ''
+      description: Binary content of the resource; Stores the raw data of the file,
+        which can include various formats such as XML, JSON, or images.
       mappings: []
       tags: []

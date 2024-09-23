@@ -1,15 +1,27 @@
 {
   "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "functions" : { },
+    "codeGenConfiguration" : {
+      "editableConfig" : false,
+      "plibVersion" : {
+        "mavenVersion" : "8.1.8",
+        "pyPiVersion" : "1.9.14"
+      }
+    },
     "id" : "1",
+    "uri" : "pipelines/web_ingest",
     "language" : "python",
-    "fabricId" : "1777",
+    "fabricId" : "9631",
     "frontEndLanguage" : "sql",
     "mode" : "batch",
     "udfs" : {
       "language" : "python",
       "udfs" : [ ],
       "functionPackageName" : "maciej_prophecy.genaichatbottemplate.functions",
-      "sharedFunctionPackageNames" : [ ]
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.streaming.functions", "prophecy.warehouse.functions" ]
     },
     "udafs" : {
       "language" : "python",
@@ -34,21 +46,20 @@
     "hadoopConf" : [ ],
     "codeMode" : "sparse",
     "buildSystem" : "maven",
-    "externalDependencies" : [ {
-      "type" : "pypi",
-      "id" : "KfvmV",
-      "name" : "Prophecy Spark AI (Python)",
-      "enabled" : true,
-      "package" : "prophecy-spark-ai==0.1.8"
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
     }, {
-      "type" : "coordinates",
-      "coordinates" : "io.prophecy:spark-ai_2.12:0.1.8",
-      "name" : "Prophecy Spark AI",
-      "enabled" : true,
-      "id" : "xs0D8",
-      "exclusions" : [ ]
+      "projectUID" : "12656",
+      "projectName" : "ProphecyStreamingPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
     } ],
-    "dependentProjectExternalDependencies" : [ ],
     "isImported" : false,
     "interimMode" : "Full",
     "interimModeEnabled" : true,
@@ -58,7 +69,7 @@
       "value" : 1000
     },
     "topLevelPackage" : "web_ingest",
-    "configurationVersion" : "v1"
+    "configurationVersion" : "v2"
   },
   "connections" : [ {
     "id" : "0gFigWbu_f4pUn-3O7C6s",
@@ -112,7 +123,8 @@
           "slug" : "out"
         } ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "datasetId" : "datasets/web_bronze_url"
@@ -142,7 +154,7 @@
               "type" : "long",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "Unique identifier for each record in the dataset.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -151,7 +163,7 @@
               "type" : "string",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "The web address of the resource; It points to the location of the sitemap in XML format.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -160,7 +172,7 @@
               "type" : "binary",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "Binary content of the resource; Stores the raw data of the file, which can include various formats such as XML, JSON, or images.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -173,7 +185,8 @@
           "slug" : "out"
         } ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
@@ -188,6 +201,10 @@
         "importString" : "",
         "activeTab" : "expressions",
         "columnsSelector" : [ "SS4YeFJ-UYz-W5_ji_O_L$$gYOe9ptiAMOzkpIn-ejRV##content" ]
+      },
+      "componentInfo" : {
+        "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.28&projectSubscriptionProjectId=12654&path=gems/Reformat",
+        "projectName" : "ProphecySparkBasicsPython"
       }
     },
     "3u5ae5Hd2G3jtDNo3ixul$$Tbv3XnEyY9dIrxwVw1avt" : {
@@ -201,7 +218,9 @@
         "phase" : 0,
         "cache" : false,
         "detailedStats" : false,
-        "isImported" : false
+        "isImported" : false,
+        "comment" : "Stores web text data in a specified location for further analysis or retrieval.",
+        "autoUpdateComment" : true
       },
       "ports" : {
         "inputs" : [ {
@@ -224,7 +243,8 @@
         } ],
         "outputs" : [ ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "datasetId" : "datasets/web_bronze_sitemap_raw"
@@ -294,7 +314,8 @@
           "slug" : "out"
         } ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "importLanguage" : "${$.workflow.metainfo.frontEndLanguage}",
@@ -316,6 +337,10 @@
         "importString" : "",
         "activeTab" : "expressions",
         "columnsSelector" : [ "eiR3MvyKSzKiZbH_YyHsk$$7ID2ovwLy1MWi-Zmuk7yK##loc", "eiR3MvyKSzKiZbH_YyHsk$$7ID2ovwLy1MWi-Zmuk7yK##result_content" ]
+      },
+      "componentInfo" : {
+        "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.2.28&projectSubscriptionProjectId=12654&path=gems/Reformat",
+        "projectName" : "ProphecySparkBasicsPython"
       }
     },
     "-xIxAocyWrLdcxF3MQvLV$$yYTEJzO4XhzoErN7Jz-rF" : {
@@ -329,7 +354,9 @@
         "phase" : 1,
         "cache" : false,
         "detailedStats" : false,
-        "isImported" : false
+        "isImported" : false,
+        "comment" : "Stores web-scraped content in a structured format for easy access and analysis.",
+        "autoUpdateComment" : true
       },
       "ports" : {
         "inputs" : [ {
@@ -361,7 +388,8 @@
         } ],
         "outputs" : [ ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "datasetId" : "datasets/web_bronze_content"
@@ -387,7 +415,8 @@
           "slug" : "out"
         } ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : false
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "datasetId" : "datasets/web_bronze_sitemap"
@@ -417,7 +446,7 @@
               "type" : "string",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "Frequency at which the content of the URL is expected to change; Indicates how often the page is updated.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -426,7 +455,7 @@
               "type" : "string",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "The URL location of the resource; Represents the web address of the sitemap entry.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -435,7 +464,7 @@
               "type" : "double",
               "nullable" : true,
               "metadata" : {
-                "description" : "",
+                "description" : "Indicates the importance of the URL in the sitemap; A higher value signifies a higher priority for search engines.",
                 "mappings" : [ ],
                 "tags" : [ ]
               }
@@ -489,7 +518,8 @@
           "isStreaming" : false
         } ],
         "selectedInputFields" : [ ],
-        "isCustomOutputSchema" : true
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : false
       },
       "properties" : {
         "operation" : "web_scrape_text",
@@ -502,6 +532,7 @@
     "inputs" : [ ],
     "outputs" : [ ],
     "selectedInputFields" : [ ],
-    "isCustomOutputSchema" : false
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
   }
 }
