@@ -76,6 +76,20 @@ pipelines:
       - datasets/web_bronze_sitemap_raw
     subgraphs: []
     dependencies: {}
+  pipelines/testPDF:
+    name: testPDF
+    description: ''
+    author: bobw@prophecy.io
+    mode: batch
+    artefactID: ''
+    language: python
+    createdAt: '2024-09-23 18:41:33'
+    datasets:
+      inputs:
+      - datasets/pdf_source
+      outputs: []
+    subgraphs: []
+    dependencies: {}
 datasets:
   datasets/web_bronze_sitemap_raw:
     name: web_bronze_sitemap_raw
@@ -194,6 +208,19 @@ datasets:
         description: ''
         author: maciej@prophecy.io
         createdAt: '2023-06-24 20:23:30'
+  datasets/pdf_source:
+    name: pdf_source
+    description: ''
+    author: bobw@prophecy.io
+    createdAt: '2024-09-23 18:44:23'
+    mode: batch
+    physicalDatasets:
+      Databricks-Prophecy:
+        fabricId: 9631
+        datasetType: File
+        description: ''
+        author: bobw@prophecy.io
+        createdAt: '2024-09-23 18:44:23'
 templates: {}
 jobs: {}
 gemContainer:
@@ -228,29 +255,43 @@ sqlUnreferencedSources: {}
 sqlPipeline: null
 dependencies:
 - type: plibMaven
-  modifiedAt: '2024-09-23T18:10:35.629266Z'
+  modifiedAt: '2024-09-23T18:41:35.131123Z'
   name: plibMaven
   version: 8.1.8
-  id: '1476850757'
-  createdAt: '2024-09-23T18:10:35.629233Z'
+  id: '438480919'
+  createdAt: '2024-09-23T18:41:35.131023Z'
+  enabled: true
+  entity: Project
 - type: plibPypi
-  modifiedAt: '2024-09-23T18:10:35.629341Z'
+  modifiedAt: '2024-09-23T18:41:35.131198Z'
   name: plibPypi
   version: 1.9.14
-  id: '423173819'
-  createdAt: '2024-09-23T18:10:35.629332Z'
+  id: '2104604227'
+  createdAt: '2024-09-23T18:41:35.131173Z'
+  enabled: true
+  entity: Project
 - type: pypi
   package: prophecy-spark-ai==0.1.8
   name: Prophecy Spark AI (Python)
-  enabled: false
+  enabled: true
   id: KfvmV
   entity: Project
+  description: spark_ai
+  scope: Project
+  modifiedAt: '2024-09-23T19:08:08.834Z'
+  editable: true
+  createdAt: '2024-09-23T19:02:14.558Z'
 - type: coordinates
   coordinates: io.prophecy:spark-ai_2.12:0.1.8
   name: Prophecy Spark AI
-  enabled: false
+  enabled: true
   id: xs0D8
   entity: Project
+  scope: Project
+  modifiedAt: '2024-09-23T19:04:54.982Z'
+  editable: true
+  createdAt: '2024-09-23T18:56:51.664Z'
+  repo: https://mvnrepository.com/artifact/io.prophecy/spark-ai
   exclusions: []
 projectDependencies:
   '12656':
